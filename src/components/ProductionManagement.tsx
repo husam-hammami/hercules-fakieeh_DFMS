@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Factory, Calendar, Plus } from "lucide-react";
+import NewRecipeDialog from "./NewRecipeDialog";
 
 interface BatchRecipe {
   recipeId: string;
@@ -24,7 +24,7 @@ const ProductionManagement = () => {
     efficiency: 84.7
   });
 
-  const [batchRecipes] = useState<BatchRecipe[]>([
+  const [batchRecipes, setBatchRecipes] = useState<BatchRecipe[]>([
     {
       recipeId: "RCP-001",
       batchNo: "BTH-001",
@@ -54,6 +54,10 @@ const ProductionManagement = () => {
       startTime: new Date(Date.now() + 3600000)
     }
   ]);
+
+  const handleNewRecipe = (newRecipe: BatchRecipe) => {
+    setBatchRecipes(prev => [...prev, newRecipe]);
+  };
 
   const getStatusColor = (status: BatchRecipe['status']) => {
     switch (status) {
@@ -100,10 +104,12 @@ const ProductionManagement = () => {
             <Calendar className="w-5 h-5 text-cyan-400" />
             Batch Recipe Management
           </CardTitle>
-          <Button className="bg-cyan-600 hover:bg-cyan-700 text-white">
-            <Plus className="w-4 h-4 mr-2" />
-            New Recipe
-          </Button>
+          <NewRecipeDialog onRecipeCreate={handleNewRecipe}>
+            <Button className="bg-cyan-600 hover:bg-cyan-700 text-white">
+              <Plus className="w-4 h-4 mr-2" />
+              New Recipe
+            </Button>
+          </NewRecipeDialog>
         </CardHeader>
         <CardContent>
           <Table>
