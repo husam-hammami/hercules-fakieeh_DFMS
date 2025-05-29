@@ -7,6 +7,18 @@ import RFIDTracking from "@/components/RFIDTracking";
 import InventoryView from "@/components/InventoryView";
 import TruckLogging from "@/components/TruckLogging";
 import DashboardStats from "@/components/DashboardStats";
+import {
+  LayoutDashboard,
+  FlaskConical,
+  Factory,
+  Users,
+  ClipboardList,
+  Calendar,
+  Zap,
+  AlertCircle,
+  BarChart3,
+  Shield,
+} from 'lucide-react';
 
 const Index = () => {
   return (
@@ -35,52 +47,53 @@ const Index = () => {
 
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
+<div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
   <nav className="p-4 space-y-2">
     <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div>
 
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
-      <span className="i-lucide-layout-dashboard w-5 h-5" />
+      <LayoutDashboard className="w-5 h-5" />
       Dashboard
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-flask-conical w-5 h-5" />
+      <FlaskConical className="w-5 h-5" />
       Material
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-factory w-5 h-5" />
+      <Factory className="w-5 h-5" />
       Production
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-users w-5 h-5" />
+      <Users className="w-5 h-5" />
       Maintenance
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-clipboard-list w-5 h-5" />
+      <ClipboardList className="w-5 h-5" />
       Orders
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
-      <span className="i-lucide-calendar w-5 h-5" />
+      <Calendar className="w-5 h-5" />
       RFID
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-zap w-5 h-5" />
+      <Zap className="w-5 h-5" />
       Weighbridge
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-alert-circle w-5 h-5" />
+      <AlertCircle className="w-5 h-5" />
       Alarms
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-bar-chart-3 w-5 h-5" />
+      <BarChart3 className="w-5 h-5" />
       Reports
     </a>
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <span className="i-lucide-shield w-5 h-5" />
+      <Shield className="w-5 h-5" />
       Admin
     </a>
   </nav>
 </div>
+
 
 
         {/* Main Content */}
