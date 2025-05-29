@@ -135,7 +135,7 @@ const Index = () => {
             <img alt="HERCULES Logo" className="h-20 object-fill bg-slate-800 p-2 rounded" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
             <div className="relative">
               <div className="bg-gradient-to-r from-slate-70/50 to-slate-60/3backdrop-blur-sm border border-slate-60/2 shadow-lg px-[2px] py-[2px] rounded-lg">
-                <p className="text-xl font-semibold bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-none">
+                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-none text-lg font-thin mx-[5px] py-[5px] my-0 px-[5px] text-justify">
                   Digital Factory Management System
                 </p>
                 <div className="mt-1 h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent"></div>
