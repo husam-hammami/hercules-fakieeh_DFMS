@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -60,17 +61,17 @@ const RFIDTracking = () => {
 
   const getStatusColor = (status: RFIDTag['status']) => {
     switch (status) {
-      case "active": return "bg-green-100 text-green-800";
-      case "inactive": return "bg-gray-100 text-gray-800";
-      case "in_transit": return "bg-blue-100 text-blue-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "active": return "bg-green-900 text-green-300 border-green-700";
+      case "inactive": return "bg-slate-700 text-slate-300 border-slate-600";
+      case "in_transit": return "bg-blue-900 text-blue-300 border-blue-700";
+      default: return "bg-slate-700 text-slate-300 border-slate-600";
     }
   };
 
   const getBatteryColor = (level: number) => {
-    if (level > 50) return "text-green-600";
-    if (level > 20) return "text-yellow-600";
-    return "text-red-600";
+    if (level > 50) return "text-green-400";
+    if (level > 20) return "text-yellow-400";
+    return "text-red-400";
   };
 
   const filteredTags = rfidTags.filter(tag => 
@@ -90,28 +91,25 @@ const RFIDTracking = () => {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-lg">
-        <CardHeader className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-b border-slate-700">
+      <Card className="bg-slate-800 border-slate-700">
+        <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Search className="h-5 w-5" />
             RFID Tag Search
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent>
           <div className="flex gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
               <Input
                 placeholder="Search by tag ID, location, or order..."
                 value={searchTag}
                 onChange={(e) => setSearchTag(e.target.value)}
-                className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-purple-500"
+                className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
               />
             </div>
-            <Button 
-              variant="outline" 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 border-none text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
-            >
+            <Button className="bg-cyan-600 hover:bg-cyan-700 text-white">
               <Scan className="h-4 w-4 mr-2" />
               Scan New Tag
             </Button>
@@ -121,15 +119,11 @@ const RFIDTracking = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredTags.map((tag) => (
-          <Card 
-            key={tag.id} 
-            className="relative overflow-hidden bg-slate-800/50 border-slate-700 backdrop-blur-lg transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-105 group"
-          >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-bl-full"></div>
-            <CardHeader className="pb-3 relative">
+          <Card key={tag.id} className="bg-slate-800 border-slate-700 hover:bg-slate-750 transition-colors">
+            <CardHeader className="pb-3">
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-2">
-                  <Wifi className="h-4 w-4 text-purple-400" />
+                  <Wifi className="h-4 w-4 text-cyan-400" />
                   <CardTitle className="text-lg text-white">{tag.id}</CardTitle>
                 </div>
                 <Badge className={getStatusColor(tag.status)}>
@@ -137,22 +131,22 @@ const RFIDTracking = () => {
                 </Badge>
               </div>
             </CardHeader>
-            <CardContent className="space-y-3 relative">
+            <CardContent className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-300 flex items-center gap-1">
+                <span className="text-sm font-medium text-slate-300 flex items-center gap-1">
                   <MapPin className="h-3 w-3" />
                   Location:
                 </span>
-                <span className="text-sm text-purple-300 font-medium">{tag.location}</span>
+                <span className="text-sm text-cyan-300 font-medium">{tag.location}</span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-300">Last Seen:</span>
-                <span className="text-sm text-gray-400">{getTimeAgo(tag.lastSeen)}</span>
+                <span className="text-sm font-medium text-slate-300">Last Seen:</span>
+                <span className="text-sm text-slate-400">{getTimeAgo(tag.lastSeen)}</span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-300 flex items-center gap-1">
+                <span className="text-sm font-medium text-slate-300 flex items-center gap-1">
                   <Battery className="h-3 w-3" />
                   Battery:
                 </span>
@@ -163,8 +157,8 @@ const RFIDTracking = () => {
               
               {tag.associatedOrder && (
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-300">Order:</span>
-                  <span className="text-sm text-blue-400 font-medium">{tag.associatedOrder}</span>
+                  <span className="text-sm font-medium text-slate-300">Order:</span>
+                  <span className="text-sm text-cyan-400 font-medium">{tag.associatedOrder}</span>
                 </div>
               )}
               
@@ -172,9 +166,9 @@ const RFIDTracking = () => {
                 <div className="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
                   <div 
                     className={`h-2 rounded-full transition-all duration-500 ${
-                      tag.batteryLevel > 50 ? 'bg-gradient-to-r from-green-400 to-emerald-500' : 
-                      tag.batteryLevel > 20 ? 'bg-gradient-to-r from-yellow-400 to-orange-500' : 
-                      'bg-gradient-to-r from-red-400 to-red-600'
+                      tag.batteryLevel > 50 ? 'bg-cyan-500' : 
+                      tag.batteryLevel > 20 ? 'bg-yellow-500' : 
+                      'bg-red-500'
                     }`}
                     style={{ width: `${tag.batteryLevel}%` }}
                   ></div>

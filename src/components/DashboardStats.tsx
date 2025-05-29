@@ -1,67 +1,97 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Truck, Package, Database, Users, TrendingUp } from "lucide-react";
+import { Truck, Package, Database, Users } from "lucide-react";
 
 const DashboardStats = () => {
   const stats = [
     {
       title: "Active Orders",
       value: "24",
+      unit: "orders",
+      percentage: 75,
       icon: Package,
-      description: "Currently processing",
-      gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-500/10 to-cyan-500/10"
+    },
+    {
+      title: "RFID Tags",
+      value: "1,247",
+      unit: "tags",
+      percentage: 89,
+      icon: Database,
     },
     {
       title: "Trucks in Yard",
       value: "8",
+      unit: "vehicles",
+      percentage: 45,
       icon: Truck,
-      description: "Arrived today",
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-500/10 to-pink-500/10"
-    },
-    {
-      title: "RFID Tags Active",
-      value: "1,247",
-      icon: Database,
-      description: "Currently tracked",
-      gradient: "from-pink-500 to-red-500",
-      bgGradient: "from-pink-500/10 to-red-500/10"
     },
     {
       title: "Staff on Duty",
       value: "12",
+      unit: "personnel",
+      percentage: 67,
       icon: Users,
-      description: "Current shift",
-      gradient: "from-green-500 to-emerald-500",
-      bgGradient: "from-green-500/10 to-emerald-500/10"
     }
   ];
+
+  const CircularProgress = ({ percentage, value, unit }: { percentage: number; value: string; unit: string }) => {
+    const circumference = 2 * Math.PI * 45;
+    const strokeDasharray = circumference;
+    const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+    return (
+      <div className="relative w-32 h-32">
+        <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+          {/* Background circle */}
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="rgb(51 65 85)"
+            strokeWidth="8"
+            fill="none"
+          />
+          {/* Progress circle */}
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            stroke="rgb(6 182 212)"
+            strokeWidth="8"
+            fill="none"
+            strokeDasharray={strokeDasharray}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            className="transition-all duration-1000 ease-out"
+          />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div className="text-2xl font-bold text-white">{value}</div>
+          <div className="text-xs text-slate-400">{unit}</div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat, index) => (
         <Card 
           key={index} 
-          className="relative overflow-hidden bg-slate-800/50 border-slate-700 backdrop-blur-lg transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-105 group"
+          className="bg-slate-800 border-slate-700 hover:bg-slate-750 transition-colors"
         >
-          <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-50`}></div>
-          <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-slate-300">
               {stat.title}
             </CardTitle>
-            <div className={`p-2 rounded-lg bg-gradient-to-r ${stat.gradient}`}>
-              <stat.icon className="h-4 w-4 text-white" />
-            </div>
+            <stat.icon className="h-4 w-4 text-cyan-400" />
           </CardHeader>
-          <CardContent className="relative">
-            <div className={`text-3xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
-              {stat.value}
-            </div>
-            <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
-              <TrendingUp className="h-3 w-3 text-green-400" />
-              {stat.description}
-            </p>
+          <CardContent className="flex items-center justify-center pb-6">
+            <CircularProgress 
+              percentage={stat.percentage} 
+              value={stat.value} 
+              unit={stat.unit}
+            />
           </CardContent>
         </Card>
       ))}
