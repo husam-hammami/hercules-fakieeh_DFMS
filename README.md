@@ -85,3 +85,15 @@ python app.py
 ```
 
 The API is currently in-memory only. Database integration will be added later.
+
+## Running tests
+
+Backend tests use `pytest`.
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest
+```
