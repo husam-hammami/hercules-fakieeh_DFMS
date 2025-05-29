@@ -176,6 +176,10 @@ const Index = () => {
               <FlaskConical className="w-5 h-5" />
               Material
             </button>
+            <button onClick={() => setActiveModule("storage")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "storage" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+              <Database className="w-5 h-5" />
+              Storage
+            </button>
             <button onClick={() => setActiveModule("production")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "production" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Factory className="w-5 h-5" />
               Production
@@ -207,10 +211,6 @@ const Index = () => {
             <button onClick={() => setActiveModule("admin")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "admin" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Shield className="w-5 h-5" />
               Admin
-            </button>
-            <button onClick={() => setActiveModule("storage")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "storage" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
-              <Database className="w-5 h-5" />
-              Storage
             </button>
           </nav>
         </div>
