@@ -10,9 +10,12 @@ import MaterialManagement from "@/components/MaterialManagement";
 import ProductionManagement from "@/components/ProductionManagement";
 import AlarmsManagement from "@/components/AlarmsManagement";
 import OrdersManagement from "@/components/OrdersManagement";
-import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield } from 'lucide-react';
+import StorageManagement from "@/components/StorageManagement";
+import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield, Database } from 'lucide-react';
+
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
+
   const renderMainContent = () => {
     switch (activeModule) {
       case "dashboard":
@@ -23,6 +26,8 @@ const Index = () => {
         return <ProductionManagement />;
       case "orders":
         return <OrdersManagement />;
+      case "storage":
+        return <StorageManagement />;
       case "rfid":
         return <RFIDTracking />;
       case "inventory":
@@ -71,6 +76,7 @@ const Index = () => {
         return <DashboardStats />;
     }
   };
+
   const getPageTitle = () => {
     switch (activeModule) {
       case "dashboard":
@@ -95,6 +101,8 @@ const Index = () => {
         return "Maintenance Management";
       case "admin":
         return "System Administration";
+      case "storage":
+        return "Storage Management";
       default:
         return "Warehouse Management Dashboard";
     }
@@ -123,10 +131,13 @@ const Index = () => {
         return "Equipment maintenance, scheduling, and work orders";
       case "admin":
         return "User management, system settings, and configuration";
+      case "storage":
+        return "Real-time monitoring of silo and bin levels";
       default:
         return "RFID-based inventory tracking and order management system";
     }
   };
+
   return <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
@@ -134,11 +145,12 @@ const Index = () => {
           <div className="flex items-center gap-6">
             <img alt="HERCULES Logo" className="h-20 object-fill bg-slate-800 p-2 rounded" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
             <div className="relative">
-              <div className="bg-gradient-to-r from-slate-70/50 to-slate-60/3backdrop-blur-sm border border-slate-60/2 shadow-lg px-[2px] py-[2px] rounded-lg">
-                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-none text-lg font-thin mx-[5px] py-[5px] my-0 px-[5px] text-justify">
+              <div className="bg-gradient-to-br from-slate-700/60 via-slate-600/40 to-slate-800/60 backdrop-blur-md border border-slate-600/30 shadow-2xl px-4 py-3 rounded-xl">
+                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-tight text-xl font-light mx-1 py-1 text-center">
                   Digital Factory Management System
                 </p>
-                <div className="mt-1 h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent"></div>
+                <div className="mt-2 h-px bg-gradient-to-r from-transparent via-cyan-500/80 to-transparent shadow-lg"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5 rounded-xl pointer-events-none"></div>
               </div>
             </div>
           </div>
@@ -196,6 +208,10 @@ const Index = () => {
               <Shield className="w-5 h-5" />
               Admin
             </button>
+            <button onClick={() => setActiveModule("storage")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "storage" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+              <Database className="w-5 h-5" />
+              Storage
+            </button>
           </nav>
         </div>
 
@@ -211,4 +227,5 @@ const Index = () => {
       </div>
     </div>;
 };
+
 export default Index;
