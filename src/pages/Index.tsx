@@ -217,17 +217,17 @@ const Index = () => {
             <div className="relative group">
               <img 
                 alt="Company Logo" 
-                className="h-16 w-16 object-contain hover-lift cursor-pointer bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20 shadow-lg" 
-                src="/lovable-uploads/ec2b9239-e496-49dc-bdbc-64957dd5f459.png" 
+                className="h-16 w-16 object-contain hover-lift cursor-pointer bg-white/90 backdrop-blur-sm rounded-xl p-2 border border-slate-300/50 shadow-lg hover:bg-white hover:border-slate-300 transition-all duration-300" 
+                src="/lovable-uploads/e2c0c4ba-1093-4d17-be9f-9f019c4f55fe.png" 
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
         </div>
       </div>
 
       <div className="flex">
-        {/* Enhanced Sidebar */}
+        {/* Enhanced Sidebar with toned down hover effects */}
         <div className="w-72 min-h-screen sidebar-gradient border-r border-slate-600/20">
           <div className="absolute inset-0 industrial-bg opacity-40"></div>
           <nav className="relative z-10 p-6 space-y-3">
@@ -239,19 +239,19 @@ const Index = () => {
                   flex items-center gap-4 px-4 py-3 rounded-xl w-full text-left font-medium transition-all duration-300 nav-item-glow relative group overflow-hidden
                   ${activeModule === item.id 
                     ? "glass-effect text-white border border-cyan-400/20 shadow-lg shadow-cyan-500/10 scale-105" 
-                    : "text-slate-300 hover:text-white hover:glass-effect hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/5"
+                    : "text-slate-300 hover:text-white hover:glass-effect hover:scale-102 hover:shadow-md hover:shadow-cyan-500/5"
                   }
                 `}
               >
-                {/* Creative hover effect - sliding gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                {/* Subtle hover effect - reduced intensity */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/8 to-cyan-500/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                 
-                {/* Icon glow effect on hover */}
+                {/* Icon with subtle glow effect */}
                 <div className={`
                   p-2 rounded-lg transition-all duration-300 relative z-10
                   ${activeModule === item.id 
                     ? "bg-gradient-to-r from-cyan-400 to-blue-500 shadow-lg shadow-cyan-500/20" 
-                    : "bg-slate-700/50 group-hover:bg-gradient-to-r group-hover:from-cyan-400/40 group-hover:to-blue-500/40 group-hover:shadow-md group-hover:shadow-cyan-500/30"
+                    : "bg-slate-700/50 group-hover:bg-gradient-to-r group-hover:from-cyan-400/20 group-hover:to-blue-500/20 group-hover:shadow-sm group-hover:shadow-cyan-500/15"
                   }
                 `}>
                   <item.icon className="w-5 h-5" />
@@ -264,8 +264,8 @@ const Index = () => {
                   <div className="absolute right-2 w-2 h-8 bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-500/30 animate-pulse"></div>
                 )}
                 
-                {/* Subtle border glow on hover */}
-                <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-cyan-500/30 transition-colors duration-300"></div>
+                {/* Very subtle border glow on hover */}
+                <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-cyan-500/15 transition-colors duration-500"></div>
               </button>
             ))}
           </nav>
