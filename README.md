@@ -71,3 +71,35 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Backend development
+
+A simple API is provided using **Flask** with a PostgreSQL database. To run the backend locally:
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+### Database setup
+
+The backend expects a running PostgreSQL instance. The connection string can be
+configured via the `DATABASE_URL` environment variable. By default it uses
+`postgresql://hercules:hercules@localhost:5432/hercules`.
+
+You can start a local database using Docker:
+
+```bash
+docker run --name hercules-db -p 5432:5432 -e POSTGRES_PASSWORD=hercules \
+  -e POSTGRES_USER=hercules -e POSTGRES_DB=hercules -d postgres:16
+```
+
+After the database is running and dependencies installed, launch the API with:
+
+```bash
+source .venv/bin/activate
+python app.py
+```
