@@ -85,3 +85,23 @@ python app.py
 ```
 
 The API is currently in-memory only. Database integration will be added later.
+
+## Available Backend Endpoints
+
+All data is held in simple in-memory lists and exposed through a REST API.
+The following endpoints are currently implemented:
+
+| Resource      | Endpoint                | Methods |
+|---------------|-------------------------|---------|
+| Materials     | `/api/materials`        | `GET`, `POST` |
+| Orders        | `/api/orders`           | `GET`, `POST` |
+| Inventory     | `/api/inventory`        | `GET`, `POST` |
+| RFID Tags     | `/api/rfid-tags`        | `GET`, `POST` |
+| Trucks        | `/api/trucks`           | `GET`, `POST` |
+| Alarms        | `/api/alarms`           | `GET`, `POST` |
+| Storage       | `/api/storage`          | `GET`, `POST` |
+| Bulk Transfers| `/api/bulk-transfers`   | `GET`, `POST` |
+| Recipes       | `/api/recipes`          | `GET`, `POST` |
+
+Additional routes for updating individual items (such as alarm or truck status)
+are also provided where applicable.
