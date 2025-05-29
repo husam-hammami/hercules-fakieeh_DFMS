@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { Package, Plus, Play, CheckCircle, Clock } from "lucide-react";
 
 interface Order {
   id: string;
@@ -92,100 +92,129 @@ const OrderManagement = () => {
     });
   };
 
+  const getStatusIcon = (status: Order['status']) => {
+    switch (status) {
+      case "pending": return Clock;
+      case "processing": return Play;
+      case "completed": return CheckCircle;
+      case "cancelled": return Package;
+      default: return Package;
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <Card className="lg:col-span-1">
-        <CardHeader>
-          <CardTitle>Create New Order</CardTitle>
+      <Card className="lg:col-span-1 bg-slate-800/50 border-slate-700 backdrop-blur-lg">
+        <CardHeader className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-b border-slate-700">
+          <CardTitle className="text-white flex items-center gap-2">
+            <Plus className="h-5 w-5" />
+            Create New Order
+          </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 p-6">
           <div>
-            <Label htmlFor="customer">Customer Name</Label>
+            <Label htmlFor="customer" className="text-gray-300">Customer Name</Label>
             <Input
               id="customer"
               value={newOrder.customerName}
               onChange={(e) => setNewOrder({...newOrder, customerName: e.target.value})}
               placeholder="Enter customer name"
+              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-blue-500"
             />
           </div>
           <div>
-            <Label htmlFor="items">Items</Label>
+            <Label htmlFor="items" className="text-gray-300">Items</Label>
             <Input
               id="items"
               value={newOrder.items}
               onChange={(e) => setNewOrder({...newOrder, items: e.target.value})}
               placeholder="Enter items description"
+              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-blue-500"
             />
           </div>
           <div>
-            <Label htmlFor="quantity">Quantity</Label>
+            <Label htmlFor="quantity" className="text-gray-300">Quantity</Label>
             <Input
               id="quantity"
               type="number"
               value={newOrder.quantity}
               onChange={(e) => setNewOrder({...newOrder, quantity: parseInt(e.target.value) || 0})}
               placeholder="Enter quantity"
+              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-blue-500"
             />
           </div>
-          <Button onClick={handleCreateOrder} className="w-full">
+          <Button 
+            onClick={handleCreateOrder} 
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold transition-all duration-300 transform hover:scale-105"
+          >
+            <Plus className="h-4 w-4 mr-2" />
             Create Order
           </Button>
         </CardContent>
       </Card>
 
-      <Card className="lg:col-span-2">
-        <CardHeader>
-          <CardTitle>Active Orders</CardTitle>
+      <Card className="lg:col-span-2 bg-slate-800/50 border-slate-700 backdrop-blur-lg">
+        <CardHeader className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-b border-slate-700">
+          <CardTitle className="text-white flex items-center gap-2">
+            <Package className="h-5 w-5" />
+            Active Orders
+          </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <div className="space-y-4">
-            {orders.map((order) => (
-              <div key={order.id} className="p-4 border rounded-lg bg-white">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="font-semibold">{order.id}</h3>
-                    <p className="text-sm text-gray-600">{order.customerName}</p>
-                  </div>
-                  <Badge className={getStatusColor(order.status)}>
-                    {order.status}
-                  </Badge>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Items:</span> {order.items}
-                  </div>
-                  <div>
-                    <span className="font-medium">Quantity:</span> {order.quantity}
-                  </div>
-                  {order.rfidTag && (
+            {orders.map((order) => {
+              const StatusIcon = getStatusIcon(order.status);
+              return (
+                <div key={order.id} className="p-4 border border-slate-600 rounded-lg bg-slate-700/30 backdrop-blur-sm hover:bg-slate-600/30 transition-all duration-300">
+                  <div className="flex justify-between items-start mb-3">
                     <div>
-                      <span className="font-medium">RFID Tag:</span> {order.rfidTag}
+                      <h3 className="font-semibold text-white text-lg">{order.id}</h3>
+                      <p className="text-gray-300">{order.customerName}</p>
                     </div>
-                  )}
-                  <div>
-                    <span className="font-medium">Created:</span> {order.createdAt.toLocaleDateString()}
+                    <div className="flex items-center gap-2">
+                      <StatusIcon className="h-4 w-4 text-gray-400" />
+                      <Badge className={getStatusColor(order.status)}>
+                        {order.status}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="font-medium">Items:</span> {order.items}
+                    </div>
+                    <div>
+                      <span className="font-medium">Quantity:</span> {order.quantity}
+                    </div>
+                    {order.rfidTag && (
+                      <div>
+                        <span className="font-medium">RFID Tag:</span> {order.rfidTag}
+                      </div>
+                    )}
+                    <div>
+                      <span className="font-medium">Created:</span> {order.createdAt.toLocaleDateString()}
+                    </div>
+                  </div>
+                  <div className="flex gap-2 mt-3">
+                    {order.status === "pending" && (
+                      <Button
+                        size="sm"
+                        onClick={() => updateOrderStatus(order.id, "processing")}
+                      >
+                        Start Processing
+                      </Button>
+                    )}
+                    {order.status === "processing" && (
+                      <Button
+                        size="sm"
+                        onClick={() => updateOrderStatus(order.id, "completed")}
+                      >
+                        Mark Complete
+                      </Button>
+                    )}
                   </div>
                 </div>
-                <div className="flex gap-2 mt-3">
-                  {order.status === "pending" && (
-                    <Button
-                      size="sm"
-                      onClick={() => updateOrderStatus(order.id, "processing")}
-                    >
-                      Start Processing
-                    </Button>
-                  )}
-                  {order.status === "processing" && (
-                    <Button
-                      size="sm"
-                      onClick={() => updateOrderStatus(order.id, "completed")}
-                    >
-                      Mark Complete
-                    </Button>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </CardContent>
       </Card>
