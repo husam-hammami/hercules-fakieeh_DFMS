@@ -36,36 +36,52 @@ const Index = () => {
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
-          <nav className="p-4 space-y-2">
-            <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
-              <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-              Dashboard
-            </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-              <div className="w-2 h-2 bg-slate-600 rounded-full"></div>
-              Factory KPIs
-            </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-              <div className="w-2 h-2 bg-slate-600 rounded-full"></div>
-              Lines Overview
-            </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-              <div className="w-2 h-2 bg-slate-600 rounded-full"></div>
-              Line 2 EPPs
-            </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-              <div className="w-2 h-2 bg-slate-600 rounded-full"></div>
-              Reports
-            </a>
-            
-            <div className="text-xs text-slate-400 uppercase tracking-wider mb-3 mt-6">Warehouse Module</div>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-cyan-600 text-white">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-              RFID Tracking
-            </a>
-          </nav>
-        </div>
+  <nav className="p-4 space-y-2">
+    <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div>
+
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
+      <span className="i-lucide-layout-dashboard w-5 h-5" />
+      Dashboard
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-flask-conical w-5 h-5" />
+      Material
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-factory w-5 h-5" />
+      Production
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-users w-5 h-5" />
+      Maintenance
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-clipboard-list w-5 h-5" />
+      Orders
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
+      <span className="i-lucide-calendar w-5 h-5" />
+      RFID
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-zap w-5 h-5" />
+      Weighbridge
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-alert-circle w-5 h-5" />
+      Alarms
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-bar-chart-3 w-5 h-5" />
+      Reports
+    </a>
+    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+      <span className="i-lucide-shield w-5 h-5" />
+      Admin
+    </a>
+  </nav>
+</div>
+
 
         {/* Main Content */}
         <div className="flex-1 p-6">
