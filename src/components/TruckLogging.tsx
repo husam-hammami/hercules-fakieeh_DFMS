@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { Truck, Users, Clock, MapPin, Weight, CheckCircle, AlertCircle, Plus, ArrowRight } from "lucide-react";
 
 interface TruckEntry {
   id: string;
@@ -56,7 +57,7 @@ const TruckLogging = () => {
   const handleTruckArrival = () => {
     if (!newTruck.truckNumber || !newTruck.driverName || !newTruck.company) {
       toast({
-        title: "Error",
+        title: "Missing Information",
         description: "Please fill in all required fields",
         variant: "destructive"
       });
@@ -75,8 +76,8 @@ const TruckLogging = () => {
     setNewTruck({ truckNumber: "", driverName: "", company: "", bayNumber: "" });
     
     toast({
-      title: "Truck Logged",
-      description: `Truck ${truck.truckNumber} has arrived and been logged`
+      title: "Truck Registered",
+      description: `${truck.truckNumber} has been successfully logged into the system`
     });
   };
 
@@ -94,17 +95,42 @@ const TruckLogging = () => {
     
     toast({
       title: "Status Updated",
-      description: `Truck status changed to ${newStatus}`
+      description: `Truck moved to ${newStatus} status`
     });
   };
 
-  const getStatusColor = (status: TruckEntry['status']) => {
+  const getStatusConfig = (status: TruckEntry['status']) => {
     switch (status) {
-      case "arrived": return "bg-blue-100 text-blue-800";
-      case "loading": return "bg-yellow-100 text-yellow-800";
-      case "weighing": return "bg-purple-100 text-purple-800";
-      case "departed": return "bg-green-100 text-green-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "arrived": 
+        return { 
+          color: "bg-blue-500/20 text-blue-300 border-blue-500/30", 
+          icon: <Clock className="w-4 h-4" />,
+          label: "Arrived"
+        };
+      case "loading": 
+        return { 
+          color: "bg-orange-500/20 text-orange-300 border-orange-500/30", 
+          icon: <Truck className="w-4 h-4" />,
+          label: "Loading"
+        };
+      case "weighing": 
+        return { 
+          color: "bg-purple-500/20 text-purple-300 border-purple-500/30", 
+          icon: <Weight className="w-4 h-4" />,
+          label: "Weighing"
+        };
+      case "departed": 
+        return { 
+          color: "bg-green-500/20 text-green-300 border-green-500/30", 
+          icon: <CheckCircle className="w-4 h-4" />,
+          label: "Departed"
+        };
+      default: 
+        return { 
+          color: "bg-slate-500/20 text-slate-300 border-slate-500/30", 
+          icon: <AlertCircle className="w-4 h-4" />,
+          label: "Unknown"
+        };
     }
   };
 
@@ -116,170 +142,260 @@ const TruckLogging = () => {
   );
 
   return (
-    <div className="space-y-6">
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-blue-600">{activeTrucks.length}</div>
-            <div className="text-sm text-gray-600">Trucks in Yard</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-yellow-600">
-              {trucks.filter(t => t.status === "loading").length}
+    <div className="space-y-8 p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
+      {/* Enhanced Header Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-blue-500/20 rounded-xl">
+                <Truck className="w-6 h-6 text-blue-400" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-white">{activeTrucks.length}</div>
+                <div className="text-sm text-slate-400">Active Trucks</div>
+              </div>
             </div>
-            <div className="text-sm text-gray-600">Currently Loading</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-green-600">{todayDepartures.length}</div>
-            <div className="text-sm text-gray-600">Departed Today</div>
+
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-orange-500/20 rounded-xl">
+                <Weight className="w-6 h-6 text-orange-400" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-white">
+                  {trucks.filter(t => t.status === "loading").length}
+                </div>
+                <div className="text-sm text-slate-400">Loading</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-purple-500/20 rounded-xl">
+                <Clock className="w-6 h-6 text-purple-400" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-white">
+                  {trucks.filter(t => t.status === "weighing").length}
+                </div>
+                <div className="text-sm text-slate-400">Weighing</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-green-500/20 rounded-xl">
+                <CheckCircle className="w-6 h-6 text-green-400" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-white">{todayDepartures.length}</div>
+                <div className="text-sm text-slate-400">Completed Today</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Truck Arrival Form */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <CardTitle>Log Truck Arrival</CardTitle>
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        {/* Enhanced Truck Registration Form */}
+        <Card className="bg-slate-800/80 border-slate-700/50 backdrop-blur-sm xl:col-span-1">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl text-white flex items-center gap-3">
+              <div className="p-2 bg-cyan-500/20 rounded-lg">
+                <Plus className="w-5 h-5 text-cyan-400" />
+              </div>
+              Register New Truck
+            </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="truckNumber">Truck Number</Label>
-              <Input
-                id="truckNumber"
-                value={newTruck.truckNumber}
-                onChange={(e) => setNewTruck({...newTruck, truckNumber: e.target.value})}
-                placeholder="e.g., ABC-1234"
-              />
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <Label className="text-slate-300 font-medium">Truck Number *</Label>
+                <Input
+                  value={newTruck.truckNumber}
+                  onChange={(e) => setNewTruck({...newTruck, truckNumber: e.target.value})}
+                  className="mt-2 bg-slate-700/50 border-slate-600/50 text-white focus:border-cyan-500/50 focus:ring-cyan-500/20"
+                  placeholder="e.g., ABC-1234"
+                />
+              </div>
+              
+              <div>
+                <Label className="text-slate-300 font-medium">Driver Name *</Label>
+                <Input
+                  value={newTruck.driverName}
+                  onChange={(e) => setNewTruck({...newTruck, driverName: e.target.value})}
+                  className="mt-2 bg-slate-700/50 border-slate-600/50 text-white focus:border-cyan-500/50 focus:ring-cyan-500/20"
+                  placeholder="Enter driver name"
+                />
+              </div>
+              
+              <div>
+                <Label className="text-slate-300 font-medium">Company *</Label>
+                <Input
+                  value={newTruck.company}
+                  onChange={(e) => setNewTruck({...newTruck, company: e.target.value})}
+                  className="mt-2 bg-slate-700/50 border-slate-600/50 text-white focus:border-cyan-500/50 focus:ring-cyan-500/20"
+                  placeholder="Enter company name"
+                />
+              </div>
+              
+              <div>
+                <Label className="text-slate-300 font-medium">Bay Assignment</Label>
+                <Input
+                  value={newTruck.bayNumber}
+                  onChange={(e) => setNewTruck({...newTruck, bayNumber: e.target.value})}
+                  className="mt-2 bg-slate-700/50 border-slate-600/50 text-white focus:border-cyan-500/50 focus:ring-cyan-500/20"
+                  placeholder="e.g., Bay A (Optional)"
+                />
+              </div>
             </div>
-            <div>
-              <Label htmlFor="driverName">Driver Name</Label>
-              <Input
-                id="driverName"
-                value={newTruck.driverName}
-                onChange={(e) => setNewTruck({...newTruck, driverName: e.target.value})}
-                placeholder="Enter driver name"
-              />
-            </div>
-            <div>
-              <Label htmlFor="company">Company</Label>
-              <Input
-                id="company"
-                value={newTruck.company}
-                onChange={(e) => setNewTruck({...newTruck, company: e.target.value})}
-                placeholder="Enter company name"
-              />
-            </div>
-            <div>
-              <Label htmlFor="bayNumber">Bay Number (Optional)</Label>
-              <Input
-                id="bayNumber"
-                value={newTruck.bayNumber}
-                onChange={(e) => setNewTruck({...newTruck, bayNumber: e.target.value})}
-                placeholder="e.g., Bay A"
-              />
-            </div>
-            <Button onClick={handleTruckArrival} className="w-full">
-              Log Arrival
+            
+            <Button 
+              onClick={handleTruckArrival} 
+              className="w-full h-12 text-base font-semibold"
+              variant="default"
+            >
+              <Plus className="w-5 h-5 mr-2" />
+              Register Truck Arrival
             </Button>
           </CardContent>
         </Card>
 
-        {/* Active Trucks */}
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Active Trucks ({activeTrucks.length})</CardTitle>
+        {/* Enhanced Active Trucks Display */}
+        <Card className="bg-slate-800/80 border-slate-700/50 backdrop-blur-sm xl:col-span-2">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl text-white flex items-center gap-3">
+              <div className="p-2 bg-orange-500/20 rounded-lg">
+                <Users className="w-5 h-5 text-orange-400" />
+              </div>
+              Active Operations ({activeTrucks.length})
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {activeTrucks.map((truck) => (
-                <div key={truck.id} className="p-4 border rounded-lg bg-white">
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h3 className="font-semibold text-lg">{truck.truckNumber}</h3>
-                      <p className="text-sm text-gray-600">{truck.company}</p>
+            <div className="space-y-4 max-h-[600px] overflow-y-auto">
+              {activeTrucks.map((truck) => {
+                const statusConfig = getStatusConfig(truck.status);
+                return (
+                  <div key={truck.id} className="bg-slate-700/30 border border-slate-600/30 rounded-xl p-6 hover:bg-slate-700/50 transition-all duration-200">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-slate-600/50 rounded-lg">
+                          <Truck className="w-6 h-6 text-slate-300" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white">{truck.truckNumber}</h3>
+                          <p className="text-slate-400">{truck.company}</p>
+                        </div>
+                      </div>
+                      <Badge className={`${statusConfig.color} border flex items-center gap-2 px-3 py-1`}>
+                        {statusConfig.icon}
+                        {statusConfig.label}
+                      </Badge>
                     </div>
-                    <Badge className={getStatusColor(truck.status)}>
-                      {truck.status}
-                    </Badge>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 text-sm mb-3">
-                    <div>
-                      <span className="font-medium">Driver:</span> {truck.driverName}
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-slate-400" />
+                        <span className="text-slate-300">{truck.driverName}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-slate-400" />
+                        <span className="text-slate-300">{truck.arrivalTime.toLocaleTimeString()}</span>
+                      </div>
+                      {truck.bayNumber && (
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-slate-400" />
+                          <span className="text-slate-300">{truck.bayNumber}</span>
+                        </div>
+                      )}
+                      {truck.weight && (
+                        <div className="flex items-center gap-2">
+                          <Weight className="w-4 h-4 text-slate-400" />
+                          <span className="text-slate-300">{truck.weight} kg</span>
+                        </div>
+                      )}
                     </div>
-                    <div>
-                      <span className="font-medium">Arrived:</span> {truck.arrivalTime.toLocaleTimeString()}
-                    </div>
-                    {truck.bayNumber && (
-                      <div>
-                        <span className="font-medium">Bay:</span> {truck.bayNumber}
+
+                    {truck.associatedOrders.length > 0 && (
+                      <div className="mb-4">
+                        <span className="text-sm font-medium text-slate-300 mb-2 block">Associated Orders:</span>
+                        <div className="flex gap-2">
+                          {truck.associatedOrders.map(order => (
+                            <Badge key={order} variant="outline" className="border-slate-500/50 text-slate-300">
+                              {order}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                     )}
-                    {truck.weight && (
-                      <div>
-                        <span className="font-medium">Weight:</span> {truck.weight} kg
-                      </div>
-                    )}
-                  </div>
 
-                  {truck.associatedOrders.length > 0 && (
-                    <div className="mb-3">
-                      <span className="text-sm font-medium">Orders: </span>
-                      {truck.associatedOrders.map(order => (
-                        <Badge key={order} variant="outline" className="ml-1">
-                          {order}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="flex gap-2">
-                    {truck.status === "arrived" && (
-                      <Button
-                        size="sm"
-                        onClick={() => updateTruckStatus(truck.id, "loading")}
-                      >
-                        Start Loading
-                      </Button>
-                    )}
-                    {truck.status === "loading" && (
-                      <>
+                    <div className="flex gap-3 flex-wrap">
+                      {truck.status === "arrived" && (
                         <Button
                           size="sm"
-                          onClick={() => updateTruckStatus(truck.id, "weighing")}
+                          variant="secondary"
+                          onClick={() => updateTruckStatus(truck.id, "loading")}
+                          className="flex items-center gap-2"
                         >
-                          Move to Weighing
+                          <ArrowRight className="w-4 h-4" />
+                          Start Loading
                         </Button>
+                      )}
+                      {truck.status === "loading" && (
+                        <>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => updateTruckStatus(truck.id, "weighing")}
+                            className="flex items-center gap-2"
+                          >
+                            <Weight className="w-4 h-4" />
+                            Move to Weighing
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateTruckStatus(truck.id, "departed")}
+                            className="flex items-center gap-2"
+                          >
+                            <CheckCircle className="w-4 h-4" />
+                            Mark Complete
+                          </Button>
+                        </>
+                      )}
+                      {truck.status === "weighing" && (
                         <Button
                           size="sm"
-                          variant="outline"
+                          variant="accent"
                           onClick={() => updateTruckStatus(truck.id, "departed")}
+                          className="flex items-center gap-2"
                         >
-                          Mark Departed
+                          <CheckCircle className="w-4 h-4" />
+                          Complete & Dispatch
                         </Button>
-                      </>
-                    )}
-                    {truck.status === "weighing" && (
-                      <Button
-                        size="sm"
-                        onClick={() => updateTruckStatus(truck.id, "departed")}
-                      >
-                        Complete & Depart
-                      </Button>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               
               {activeTrucks.length === 0 && (
-                <div className="text-center py-8 text-gray-500">
-                  No active trucks in the yard
+                <div className="text-center py-12">
+                  <div className="p-4 bg-slate-700/30 rounded-xl inline-block mb-4">
+                    <Truck className="w-12 h-12 text-slate-400" />
+                  </div>
+                  <h3 className="text-lg font-medium text-slate-300 mb-2">No Active Trucks</h3>
+                  <p className="text-slate-400">Register a new truck arrival to get started</p>
                 </div>
               )}
             </div>
