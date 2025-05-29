@@ -134,7 +134,7 @@ const Index = () => {
           <div className="flex items-center gap-4">
             <img alt="HERCULES Logo" className="h-20 object-fill bg-slate-800 p-2 rounded" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
             <div>
-              <p className="text-xs text-slate-400">Industrial Management System</p>
+              <p className="text-sm text-slate-50 mx-0 text-left">Digital Factory Management System</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
