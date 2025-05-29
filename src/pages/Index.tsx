@@ -224,7 +224,7 @@ const Index = () => {
                 <h2 className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
                   {getPageTitle()}
                 </h2>
-                <p className="text-slate-400">{getPageDescription()}</p>
+                
               </div>
               {activeModule === "dashboard" && <div className="flex items-center gap-4">
                   <div className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg">
