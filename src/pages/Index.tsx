@@ -80,7 +80,7 @@ const Index = () => {
   const getPageTitle = () => {
     switch (activeModule) {
       case "dashboard":
-        return "Warehouse Management Dashboard";
+        return "Production Intelligence Dashboard";
       case "material":
         return "Material Management";
       case "production":
@@ -104,13 +104,14 @@ const Index = () => {
       case "storage":
         return "Storage Management";
       default:
-        return "Warehouse Management Dashboard";
+        return "Production Intelligence Dashboard";
     }
   };
+
   const getPageDescription = () => {
     switch (activeModule) {
       case "dashboard":
-        return "RFID-based inventory tracking and order management system";
+        return "Real-time production monitoring, KPI tracking, and operational intelligence";
       case "material":
         return "Material inventory, codes, and specifications management";
       case "production":
@@ -134,7 +135,7 @@ const Index = () => {
       case "storage":
         return "Real-time monitoring of silo and bin levels";
       default:
-        return "RFID-based inventory tracking and order management system";
+        return "Real-time production monitoring, KPI tracking, and operational intelligence";
     }
   };
 
@@ -155,10 +156,15 @@ const Index = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-slate-300">Hello, ASM</span>
-            <div className="w-6 h-6 bg-cyan-500 rounded-full"></div>
-            <div className="px-3 py-1 bg-cyan-500 text-white text-xs rounded">
-              v2.0
+            <div className="text-right">
+              <span className="text-sm text-slate-300 block">Production Manager</span>
+              <span className="text-xs text-slate-400">Online • Shift A</span>
+            </div>
+            <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-semibold">AM</span>
+            </div>
+            <div className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs rounded-full">
+              v2.1
             </div>
           </div>
         </div>
@@ -216,10 +222,40 @@ const Index = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800">
           <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-white mb-2">{getPageTitle()}</h2>
-            <p className="text-slate-400">{getPageDescription()}</p>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+                  {getPageTitle()}
+                </h2>
+                <p className="text-slate-400">{getPageDescription()}</p>
+              </div>
+              {activeModule === "dashboard" && (
+                <div className="flex items-center gap-4">
+                  <div className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg">
+                    <span className="text-green-400 text-sm font-medium">System Operational</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-white text-sm font-medium">
+                      {new Date().toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}
+                    </div>
+                    <div className="text-slate-400 text-xs">
+                      {new Date().toLocaleTimeString('en-US', { 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        second: '2-digit' 
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {renderMainContent()}
