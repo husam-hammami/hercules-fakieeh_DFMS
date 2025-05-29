@@ -11,7 +11,6 @@ import ProductionManagement from "@/components/ProductionManagement";
 import AlarmsManagement from "@/components/AlarmsManagement";
 import OrdersManagement from "@/components/OrdersManagement";
 import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield } from 'lucide-react';
-
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
   const renderMainContent = () => {
@@ -133,11 +132,7 @@ const Index = () => {
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img 
-              src="/lovable-uploads/006e37e4-6419-43a6-9e93-f6ebf54da784.png" 
-              alt="HERCULES Logo" 
-              className="h-20 object-contain filter invert brightness-0 contrast-100 opacity-90 hover:opacity-100 transition-opacity duration-200" 
-            />
+            <img src="/lovable-uploads/006e37e4-6419-43a6-9e93-f6ebf54da784.png" alt="HERCULES Logo" className="h-20 object-fill" />
             <div>
               <p className="text-xs text-slate-400">Industrial Management System</p>
             </div>
