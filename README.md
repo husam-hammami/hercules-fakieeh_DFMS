@@ -71,3 +71,48 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Backend development
+
+A minimal API is provided using **Flask**. To run the backend locally:
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+The API is currently in-memory only. Database integration will be added later.
+
+### Available API routes
+
+All routes are prefixed with `/api`:
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| GET    | `/materials`        | List all materials |
+| POST   | `/materials`        | Create a new material |
+| GET    | `/orders`           | List all orders |
+| POST   | `/orders`           | Create an order |
+| GET    | `/inventory`        | List inventory items |
+| POST   | `/inventory`        | Create an inventory item |
+| GET    | `/rfid-tags`        | List RFID tags |
+| POST   | `/rfid-tags`        | Register new RFID tag |
+| GET    | `/trucks`           | List trucks |
+| POST   | `/trucks`           | Register a truck |
+| PUT    | `/trucks/<id>/status` | Update truck status |
+| GET    | `/alarms`           | List alarms |
+| POST   | `/alarms`           | Create an alarm |
+| PUT    | `/alarms/<id>/status` | Update alarm status |
+| GET    | `/storage-bins`     | List storage bins |
+| POST   | `/storage-bins`     | Create a storage bin |
+| PUT    | `/storage-bins/<id>` | Update a storage bin |
+| GET    | `/bulk-transfers`   | List bulk transfers |
+| POST   | `/bulk-transfers`   | Create a bulk transfer |
+| PUT    | `/bulk-transfers/<id>/status` | Update transfer status |
+| GET    | `/recipes`          | List production recipes |
+| POST   | `/recipes`          | Create a recipe |
+| PUT    | `/recipes/<id>/status` | Update recipe status |
+
