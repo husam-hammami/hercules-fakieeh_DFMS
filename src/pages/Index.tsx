@@ -156,11 +156,12 @@ const Index = () => {
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
-            </div>
+            <img 
+              src="/lovable-uploads/006e37e4-6419-43a6-9e93-f6ebf54da784.png" 
+              alt="HERCULES Logo" 
+              className="h-8"
+            />
             <div>
-              <h1 className="text-xl font-semibold text-white">HERCULES</h1>
               <p className="text-xs text-slate-400">Industrial Management System</p>
             </div>
           </div>
