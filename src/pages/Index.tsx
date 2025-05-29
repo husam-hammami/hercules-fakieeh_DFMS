@@ -185,10 +185,7 @@ const Index = () => {
               <Factory className="w-5 h-5" />
               Production
             </button>
-            <button onClick={() => setActiveModule("maintenance")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "maintenance" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
-              <Users className="w-5 h-5" />
-              Maintenance
-            </button>
+            
             <button onClick={() => setActiveModule("orders")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "orders" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <ClipboardList className="w-5 h-5" />
               Orders
