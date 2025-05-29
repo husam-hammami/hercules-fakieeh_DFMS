@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { Progress } from "@/components/ui/progress";
 import { 
   LineChart, 
   Line, 
@@ -27,7 +26,11 @@ import {
   Clock, 
   Target,
   Activity,
-  Database
+  Database,
+  Layers,
+  Gauge,
+  Users,
+  Calendar
 } from "lucide-react";
 
 const DashboardStats = () => {
@@ -42,8 +45,50 @@ const DashboardStats = () => {
     { time: "18:00", efficiency: 87, target: 90 },
   ];
 
-  // Inventory Levels Data
-  const inventoryData = [
+  // Weekly Output Trend
+  const weeklyOutputData = [
+    { week: "Week 1", output: 105 },
+    { week: "Week 2", output: 142 },
+    { week: "Week 3", output: 120 },
+    { week: "Week 4", output: 158 },
+  ];
+
+  // Energy Consumption Data
+  const energyConsumptionData = [
+    { day: "Mon", consumption: 45 },
+    { day: "Tue", consumption: 62 },
+    { day: "Wed", consumption: 60 },
+    { day: "Thu", consumption: 68 },
+    { day: "Fri", consumption: 91 },
+    { day: "Sat", consumption: 74 },
+    { day: "Sun", consumption: 78 },
+  ];
+
+  // Monthly Production Data
+  const monthlyProductionData = [
+    { month: "Jan", production: 115 },
+    { month: "Feb", production: 148 },
+    { month: "Mar", production: 175 },
+    { month: "Apr", production: 135 },
+    { month: "May", production: 195 },
+  ];
+
+  // Product Distribution
+  const productDistributionData = [
+    { name: "Product A", value: 45, color: "#4F46E5" },
+    { name: "Product B", value: 35, color: "#818CF8" },
+    { name: "Product C", value: 20, color: "#C7D2FE" },
+  ];
+
+  // Material Usage
+  const materialUsageData = [
+    { name: "Corn", value: 50, color: "#4F46E5" },
+    { name: "Soy", value: 30, color: "#818CF8" },
+    { name: "Wheat", value: 20, color: "#C7D2FE" },
+  ];
+
+  // Storage Capacity Utilization
+  const storageData = [
     { material: "Raw Material A", current: 750, capacity: 1000 },
     { material: "Raw Material B", current: 420, capacity: 800 },
     { material: "Finished Product", current: 280, capacity: 500 },
@@ -69,39 +114,49 @@ const DashboardStats = () => {
     { day: "Sun", intake: 65, outloading: 68, production: 65 },
   ];
 
-  // Key Metrics
+  // Key Performance Indicators
   const keyMetrics = [
     {
-      title: "Overall Equipment Effectiveness",
-      value: "87.5%",
-      change: "+2.3%",
-      trend: "up",
+      title: "Total Orders",
+      value: "124",
+      icon: Package,
+      color: "text-indigo-400",
+      bgColor: "bg-indigo-500",
+    },
+    {
+      title: "Materials",
+      value: "36",
+      icon: Layers,
+      color: "text-blue-400",
+      bgColor: "bg-blue-500",
+    },
+    {
+      title: "Units Produced",
+      value: "15,600",
       icon: Factory,
       color: "text-green-400",
+      bgColor: "bg-green-500",
     },
     {
-      title: "Production Rate",
-      value: "142 units/hr",
-      change: "+5.2%",
-      trend: "up",
-      icon: Activity,
-      color: "text-blue-400",
+      title: "Efficiency",
+      value: "92%",
+      icon: Gauge,
+      color: "text-yellow-400",
+      bgColor: "bg-yellow-500",
     },
     {
-      title: "Quality Score",
-      value: "98.2%",
-      change: "-0.1%",
-      trend: "down",
-      icon: Target,
+      title: "Last Batch",
+      value: "10:42 AM",
+      icon: Clock,
       color: "text-purple-400",
+      bgColor: "bg-purple-500",
     },
     {
-      title: "Energy Efficiency",
-      value: "92.1%",
-      change: "+1.8%",
-      trend: "up",
-      icon: TrendingUp,
+      title: "Active Trucks",
+      value: "8",
+      icon: Truck,
       color: "text-cyan-400",
+      bgColor: "bg-cyan-500",
     },
   ];
 
@@ -111,29 +166,23 @@ const DashboardStats = () => {
     intake: { label: "Intake", color: "#3b82f6" },
     outloading: { label: "Outloading", color: "#10b981" },
     production: { label: "Production", color: "#f59e0b" },
+    output: { label: "Output (tons)", color: "#4F46E5" },
+    consumption: { label: "Energy (kWh)", color: "#818CF8" },
   };
 
   return (
     <div className="space-y-6">
       {/* Key Metrics Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {keyMetrics.map((metric, index) => (
           <Card key={index} className="bg-slate-800 border-slate-700">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg bg-slate-700 ${metric.color}`}>
-                    <metric.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-white">{metric.value}</p>
-                    <p className="text-sm text-slate-400">{metric.title}</p>
-                  </div>
+              <div className="flex flex-col items-center text-center gap-2">
+                <div className={`p-3 rounded-lg ${metric.bgColor}/20 ${metric.color}`}>
+                  <metric.icon className="w-8 h-8" />
                 </div>
-                <div className={`flex items-center gap-1 ${metric.trend === 'up' ? 'text-green-400' : 'text-red-400'}`}>
-                  {metric.trend === 'up' ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
-                  <span className="text-sm font-medium">{metric.change}</span>
-                </div>
+                <p className="text-2xl font-bold text-white">{metric.value}</p>
+                <p className="text-sm text-slate-400">{metric.title}</p>
               </div>
             </CardContent>
           </Card>
@@ -141,107 +190,235 @@ const DashboardStats = () => {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Production Efficiency Trend */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Product Distribution */}
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Factory className="w-5 h-5 text-blue-400" />
-              Production Efficiency Trend
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={chartConfig} className="h-[300px]">
-              <AreaChart data={productionData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="time" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Area
-                  type="monotone"
-                  dataKey="efficiency"
-                  stroke="#06b6d4"
-                  fill="#06b6d4"
-                  fillOpacity={0.3}
-                  strokeWidth={2}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="target"
-                  stroke="#10b981"
-                  strokeWidth={2}
-                  strokeDasharray="5 5"
-                />
-              </AreaChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        {/* Order Status Distribution */}
-        <Card className="bg-slate-800 border-slate-700">
-          <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
-              <Package className="w-5 h-5 text-green-400" />
-              Order Status Distribution
+              <Package className="w-5 h-5 text-indigo-400" />
+              Product Distribution
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ChartContainer config={chartConfig} className="h-[300px]">
               <PieChart>
                 <Pie
-                  data={orderStatusData}
+                  data={productDistributionData}
                   cx="50%"
                   cy="50%"
                   outerRadius={80}
                   dataKey="value"
                   label={({ name, value }) => `${name}: ${value}%`}
                 >
-                  {orderStatusData.map((entry, index) => (
+                  {productDistributionData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
                 <ChartTooltip content={<ChartTooltipContent />} />
               </PieChart>
             </ChartContainer>
+            <div className="mt-4 flex justify-center gap-4">
+              {productDistributionData.map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div 
+                    className="w-3 h-3 rounded-full" 
+                    style={{ backgroundColor: item.color }} 
+                  />
+                  <span className="text-xs text-slate-300">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Monthly Production */}
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-blue-400" />
+              Monthly Production
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={chartConfig} className="h-[300px]">
+              <BarChart data={monthlyProductionData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="month" stroke="#9ca3af" />
+                <YAxis stroke="#9ca3af" />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Bar 
+                  dataKey="production" 
+                  fill="#4F46E5" 
+                  name="Production (tons)"
+                  radius={[2, 2, 0, 0]} 
+                />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+
+        {/* Material Usage */}
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Layers className="w-5 h-5 text-green-400" />
+              Material Usage
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={chartConfig} className="h-[300px]">
+              <PieChart>
+                <Pie
+                  data={materialUsageData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  innerRadius={40}
+                  dataKey="value"
+                  label={({ name, value }) => `${name}: ${value}%`}
+                >
+                  {materialUsageData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <ChartTooltip content={<ChartTooltipContent />} />
+              </PieChart>
+            </ChartContainer>
+            <div className="mt-4 flex justify-center gap-4">
+              {materialUsageData.map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div 
+                    className="w-3 h-3 rounded-full" 
+                    style={{ backgroundColor: item.color }} 
+                  />
+                  <span className="text-xs text-slate-300">{item.name}</span>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Daily Throughput */}
+        {/* Weekly Output Trend */}
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Truck className="w-5 h-5 text-purple-400" />
-              Daily Throughput Analysis
+              <TrendingUp className="w-5 h-5 text-yellow-400" />
+              Weekly Output Trend
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ChartContainer config={chartConfig} className="h-[300px]">
-              <BarChart data={throughputData}>
+              <LineChart data={weeklyOutputData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="day" stroke="#9ca3af" />
+                <XAxis dataKey="week" stroke="#9ca3af" />
                 <YAxis stroke="#9ca3af" />
                 <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="intake" fill="#3b82f6" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="outloading" fill="#10b981" radius={[2, 2, 0, 0]} />
-                <Bar dataKey="production" fill="#f59e0b" radius={[2, 2, 0, 0]} />
-              </BarChart>
+                <Line 
+                  type="monotone" 
+                  dataKey="output" 
+                  stroke="#4F46E5" 
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
             </ChartContainer>
           </CardContent>
         </Card>
 
-        {/* Inventory Levels */}
+        {/* Weekly Energy Consumption */}
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Database className="w-5 h-5 text-cyan-400" />
+              <Activity className="w-5 h-5 text-purple-400" />
+              Weekly Energy Consumption
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={chartConfig} className="h-[300px]">
+              <AreaChart data={energyConsumptionData}>
+                <defs>
+                  <linearGradient id="colorConsumption" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#818CF8" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#818CF8" stopOpacity={0.1}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="day" stroke="#9ca3af" />
+                <YAxis stroke="#9ca3af" />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Area 
+                  type="monotone" 
+                  dataKey="consumption" 
+                  stroke="#818CF8" 
+                  fillOpacity={1}
+                  fill="url(#colorConsumption)" 
+                />
+              </AreaChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Charts Row 3 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Order Status Distribution */}
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Package className="w-5 h-5 text-cyan-400" />
+              Order Status Distribution
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-between items-center">
+              <ChartContainer config={chartConfig} className="h-[300px] w-[60%]">
+                <PieChart>
+                  <Pie
+                    data={orderStatusData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    dataKey="value"
+                  >
+                    {orderStatusData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                </PieChart>
+              </ChartContainer>
+              <div className="space-y-4 w-[35%]">
+                {orderStatusData.map((status, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div 
+                      className="w-4 h-4 rounded" 
+                      style={{ backgroundColor: status.color }} 
+                    />
+                    <div>
+                      <p className="text-sm font-medium text-white">{status.name}</p>
+                      <p className="text-sm text-slate-400">{status.value}%</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Storage Capacity Utilization */}
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Database className="w-5 h-5 text-green-400" />
               Storage Capacity Utilization
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {inventoryData.map((item, index) => {
+            {storageData.map((item, index) => {
               const percentage = (item.current / item.capacity) * 100;
               const getColor = (percent: number) => {
                 if (percent >= 90) return "bg-red-500";
