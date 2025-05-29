@@ -85,3 +85,8 @@ python app.py
 ```
 
 The API is currently in-memory only. Database integration will be added later.
+
+## Documentation
+
+- [Unified Namespace](docs/UNS.md) – topic hierarchy used by backend services.
+- [PLC DB1 Map](docs/db1.md) – addresses, offsets and their purpose.
