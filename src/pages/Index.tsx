@@ -12,8 +12,10 @@ import AlarmsManagement from "@/components/AlarmsManagement";
 import OrdersManagement from "@/components/OrdersManagement";
 import StorageManagement from "@/components/StorageManagement";
 import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield, Database } from 'lucide-react';
+
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
+
   const renderMainContent = () => {
     switch (activeModule) {
       case "dashboard":
@@ -74,6 +76,7 @@ const Index = () => {
         return <DashboardStats />;
     }
   };
+
   const getPageTitle = () => {
     switch (activeModule) {
       case "dashboard":
@@ -104,6 +107,7 @@ const Index = () => {
         return "Production Intelligence Dashboard";
     }
   };
+
   const getPageDescription = () => {
     switch (activeModule) {
       case "dashboard":
@@ -134,6 +138,7 @@ const Index = () => {
         return "Real-time production monitoring, KPI tracking, and operational intelligence";
     }
   };
+
   return <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
@@ -158,9 +163,7 @@ const Index = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-semibold">AM</span>
             </div>
-            <div className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs rounded-full">
-              v2.1
-            </div>
+            <img alt="Company Logo" className="h-12 w-12 object-contain" src="/lovable-uploads/ec2b9239-e496-49dc-bdbc-64957dd5f459.png" />
           </div>
         </div>
       </div>
@@ -253,4 +256,5 @@ const Index = () => {
       </div>
     </div>;
 };
+
 export default Index;
