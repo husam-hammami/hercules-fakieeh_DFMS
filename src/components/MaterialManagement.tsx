@@ -75,7 +75,13 @@ const MaterialManagement = () => {
       <Card className="bg-slate-800 border-slate-700">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
-            <Plus className="w-5 h-5 text-cyan-400" />
+            <div className="relative">
+              <Plus className="w-6 h-6 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)] filter brightness-125 transform hover:scale-110 transition-all duration-200" 
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.6)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                    }} />
+              <div className="absolute inset-0 w-6 h-6 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-sm -z-10"></div>
+            </div>
             Add New Material
           </CardTitle>
         </CardHeader>
