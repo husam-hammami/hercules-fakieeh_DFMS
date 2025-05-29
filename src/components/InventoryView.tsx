@@ -124,7 +124,7 @@ const InventoryView = () => {
                 </option>
               ))}
             </select>
-            <Button variant="outline">
+            <Button variant="creative">
               Export Report
             </Button>
           </div>
@@ -188,7 +188,7 @@ const InventoryView = () => {
                 <Button size="sm" variant="outline" className="flex-1">
                   Update
                 </Button>
-                <Button size="sm" variant="outline" className="flex-1">
+                <Button size="sm" variant="secondary" className="flex-1">
                   Move
                 </Button>
               </div>

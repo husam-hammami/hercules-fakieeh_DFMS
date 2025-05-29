@@ -98,7 +98,8 @@ const OutloadingOrderForm = () => {
               />
               <Button 
                 onClick={handleRFIDScan}
-                className="bg-orange-600 hover:bg-orange-700"
+                variant="secondary"
+                size="icon"
               >
                 <Scan className="w-4 h-4" />
               </Button>
@@ -173,7 +174,9 @@ const OutloadingOrderForm = () => {
 
         <Button 
           onClick={handleSubmitOutloadingOrder}
-          className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+          variant="accent"
+          size="lg"
+          className="w-full"
         >
           <Package className="w-4 h-4 mr-2" />
           Create Outloading Order

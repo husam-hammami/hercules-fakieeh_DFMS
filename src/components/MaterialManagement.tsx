@@ -126,8 +126,11 @@ const MaterialManagement = () => {
             <div className="flex items-end">
               <Button 
                 onClick={handleAddMaterial}
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white"
+                variant="creative"
+                size="lg"
+                className="w-full"
               >
+                <Plus className="w-4 h-4 mr-2" />
                 Add Material
               </Button>
             </div>
@@ -177,7 +180,7 @@ const MaterialManagement = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Button size="sm" variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-700">
+                    <Button size="sm" variant="outline" className="hover:bg-cyan-950/50">
                       <Edit className="w-4 h-4" />
                     </Button>
                   </TableCell>
