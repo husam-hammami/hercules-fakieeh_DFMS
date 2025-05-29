@@ -158,14 +158,14 @@ const Index = () => {
   const navigationItems = [
     { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", glow: "cyan" },
     { id: "material", icon: FlaskConical, label: "Material", glow: "blue" },
-    { id: "storage", icon: Database, label: "Storage", glow: "purple" },
+    { id: "storage", icon: Database, label: "Storage", glow: "emerald" },
     { id: "production", icon: Factory, label: "Production", glow: "green" },
     { id: "orders", icon: ClipboardList, label: "Orders", glow: "orange" },
     { id: "rfid", icon: Calendar, label: "RFID", glow: "pink" },
     { id: "weighbridge", icon: Zap, label: "Weighbridge", glow: "yellow" },
     { id: "alarms", icon: AlertCircle, label: "Alarms", glow: "red" },
     { id: "reports", icon: BarChart3, label: "Reports", glow: "indigo" },
-    { id: "admin", icon: Shield, label: "Admin", glow: "violet" }
+    { id: "admin", icon: Shield, label: "Admin", glow: "teal" }
   ];
 
   return (
@@ -173,7 +173,7 @@ const Index = () => {
       {/* Enhanced background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-20 w-80 h-80 bg-gradient-to-br from-cyan-400/10 via-transparent to-transparent rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-purple-400/8 via-transparent to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-orange-400/8 via-transparent to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-gradient-to-br from-blue-400/6 via-transparent to-transparent rounded-full blur-3xl animate-pulse delay-2000"></div>
         <div className="absolute top-10 right-1/3 w-64 h-64 bg-gradient-to-br from-indigo-400/8 via-transparent to-transparent rounded-full blur-2xl animate-pulse delay-3000"></div>
       </div>
@@ -188,7 +188,7 @@ const Index = () => {
                 className="h-20 object-fill p-2 rounded-xl glass-effect hover-lift group-hover:shadow-cyan-500/20" 
                 src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" 
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-orange-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             <div className="relative">
               <div className="glass-effect neon-border px-8 py-4 rounded-2xl hover-lift">
@@ -196,7 +196,7 @@ const Index = () => {
                   Digital Factory Management System
                 </p>
                 <div className="mt-3 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-purple-500/5 rounded-2xl pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-orange-500/5 rounded-2xl pointer-events-none"></div>
               </div>
             </div>
           </div>
@@ -214,11 +214,14 @@ const Index = () => {
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
-            <img 
-              alt="Company Logo" 
-              className="h-16 w-16 object-contain hover-lift cursor-pointer" 
-              src="/lovable-uploads/ec2b9239-e496-49dc-bdbc-64957dd5f459.png" 
-            />
+            <div className="relative group">
+              <img 
+                alt="Company Logo" 
+                className="h-16 w-16 object-contain hover-lift cursor-pointer bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20 shadow-lg" 
+                src="/lovable-uploads/ec2b9239-e496-49dc-bdbc-64957dd5f459.png" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -233,26 +236,36 @@ const Index = () => {
                 key={item.id}
                 onClick={() => setActiveModule(item.id)}
                 className={`
-                  flex items-center gap-4 px-4 py-3 rounded-xl w-full text-left font-medium transition-all duration-300 nav-item-glow relative
+                  flex items-center gap-4 px-4 py-3 rounded-xl w-full text-left font-medium transition-all duration-300 nav-item-glow relative group overflow-hidden
                   ${activeModule === item.id 
                     ? "glass-effect text-white border border-cyan-400/20 shadow-lg shadow-cyan-500/10 scale-105" 
                     : "text-slate-300 hover:text-white hover:glass-effect hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/5"
                   }
                 `}
               >
+                {/* Creative hover effect - sliding gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                
+                {/* Icon glow effect on hover */}
                 <div className={`
-                  p-2 rounded-lg transition-all duration-300
+                  p-2 rounded-lg transition-all duration-300 relative z-10
                   ${activeModule === item.id 
                     ? "bg-gradient-to-r from-cyan-400 to-blue-500 shadow-lg shadow-cyan-500/20" 
-                    : "bg-slate-700/50 group-hover:bg-gradient-to-r group-hover:from-cyan-400/40 group-hover:to-blue-500/40"
+                    : "bg-slate-700/50 group-hover:bg-gradient-to-r group-hover:from-cyan-400/40 group-hover:to-blue-500/40 group-hover:shadow-md group-hover:shadow-cyan-500/30"
                   }
                 `}>
                   <item.icon className="w-5 h-5" />
                 </div>
-                <span className="text-base">{item.label}</span>
+                
+                <span className="text-base relative z-10">{item.label}</span>
+                
+                {/* Active indicator with enhanced glow */}
                 {activeModule === item.id && (
-                  <div className="absolute right-2 w-2 h-8 bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-500/30"></div>
+                  <div className="absolute right-2 w-2 h-8 bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-500/30 animate-pulse"></div>
                 )}
+                
+                {/* Subtle border glow on hover */}
+                <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-cyan-500/30 transition-colors duration-300"></div>
               </button>
             ))}
           </nav>
