@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,4 +92,28 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Enhanced Industrial Theme - Custom Gradient Backgrounds */
+.industrial-bg-main {
+  background: linear-gradient(135deg, #09090b 0%, #18181b 50%, #0f0f23 100%);
+}
+
+.industrial-bg-sidebar {
+  background: linear-gradient(180deg, #18181b 0%, #1f1f23 100%);
+  border-right: 1px solid rgba(39, 39, 42, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.industrial-card {
+  background: linear-gradient(145deg, rgba(39, 39, 42, 0.8) 0%, rgba(24, 24, 27, 0.9) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(63, 63, 70, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.industrial-header {
+  background: linear-gradient(90deg, #18181b 0%, #1f1f23 50%, #18181b 100%);
+  border-bottom: 1px solid rgba(39, 39, 42, 0.8);
+  backdrop-filter: blur(10px);
 }

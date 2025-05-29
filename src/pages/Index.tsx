@@ -37,39 +37,39 @@ const Index = () => {
       case "alarms":
         return <AlarmsManagement />;
       case "reports":
-        return <Card className="bg-slate-800 border-slate-700">
+        return <Card className="industrial-card">
             <CardHeader>
-              <CardTitle className="text-white">Reports & Analytics</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle className="text-zinc-100">Reports & Analytics</CardTitle>
+              <CardDescription className="text-zinc-400">
                 Comprehensive reporting dashboard
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-white">Reports module coming soon...</div>
+              <div className="text-zinc-200">Reports module coming soon...</div>
             </CardContent>
           </Card>;
       case "maintenance":
-        return <Card className="bg-slate-800 border-slate-700">
+        return <Card className="industrial-card">
             <CardHeader>
-              <CardTitle className="text-white">Maintenance Management</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle className="text-zinc-100">Maintenance Management</CardTitle>
+              <CardDescription className="text-zinc-400">
                 Equipment maintenance and scheduling
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-white">Maintenance module coming soon...</div>
+              <div className="text-zinc-200">Maintenance module coming soon...</div>
             </CardContent>
           </Card>;
       case "admin":
-        return <Card className="bg-slate-800 border-slate-700">
+        return <Card className="industrial-card">
             <CardHeader>
-              <CardTitle className="text-white">Administration</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle className="text-zinc-100">Administration</CardTitle>
+              <CardDescription className="text-zinc-400">
                 System administration and user management
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-white">Admin module coming soon...</div>
+              <div className="text-zinc-200">Admin module coming soon...</div>
             </CardContent>
           </Card>;
       default:
@@ -139,15 +139,15 @@ const Index = () => {
     }
   };
 
-  return <div className="min-h-screen bg-slate-900 text-white">
+  return <div className="min-h-screen industrial-bg-main text-zinc-100">
       {/* Header */}
-      <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
+      <div className="industrial-header px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <img alt="HERCULES Logo" className="h-20 object-fill bg-slate-800 p-2 rounded" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
+            <img alt="HERCULES Logo" className="h-20 object-fill bg-zinc-800/60 p-2 rounded-lg backdrop-blur-sm border border-zinc-700/50" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
             <div className="relative">
-              <div className="bg-gradient-to-br from-slate-700/60 via-slate-600/40 to-slate-800/60 backdrop-blur-md border border-slate-600/30 shadow-2xl px-4 py-3 rounded-xl">
-                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-tight text-center text-base mx-0 py-0 font-thin">
+              <div className="bg-gradient-to-br from-zinc-800/60 via-zinc-700/40 to-zinc-900/60 backdrop-blur-md border border-zinc-600/30 shadow-2xl px-4 py-3 rounded-xl">
+                <p className="bg-gradient-to-r from-zinc-100 via-zinc-200 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-tight text-center text-base mx-0 py-0 font-thin">
                   Digital Factory Management System
                 </p>
                 <div className="mt-2 h-px bg-gradient-to-r from-transparent via-cyan-500/80 to-transparent shadow-lg"></div>
@@ -157,10 +157,10 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
-              <span className="text-sm text-slate-300 block">Production Manager</span>
-              <span className="text-xs text-slate-400">Online • Shift A</span>
+              <span className="text-sm text-zinc-300 block">Production Manager</span>
+              <span className="text-xs text-zinc-400">Online • Shift A</span>
             </div>
-            <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/25">
               <span className="text-white text-sm font-semibold">AM</span>
             </div>
             <img alt="Company Logo" className="h-12 w-12 object-contain" src="/lovable-uploads/ec2b9239-e496-49dc-bdbc-64957dd5f459.png" />
@@ -170,46 +170,46 @@ const Index = () => {
 
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
+        <div className="w-64 industrial-bg-sidebar min-h-screen">
           <nav className="p-4 space-y-2">
-            <button onClick={() => setActiveModule("dashboard")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "dashboard" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("dashboard")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "dashboard" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <LayoutDashboard className="w-5 h-5" />
               Dashboard
             </button>
-            <button onClick={() => setActiveModule("material")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "material" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("material")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "material" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <FlaskConical className="w-5 h-5" />
               Material
             </button>
-            <button onClick={() => setActiveModule("storage")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "storage" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("storage")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "storage" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <Database className="w-5 h-5" />
               Storage
             </button>
-            <button onClick={() => setActiveModule("production")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "production" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("production")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "production" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <Factory className="w-5 h-5" />
               Production
             </button>
             
-            <button onClick={() => setActiveModule("orders")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "orders" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("orders")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "orders" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <ClipboardList className="w-5 h-5" />
               Orders
             </button>
-            <button onClick={() => setActiveModule("rfid")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "rfid" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("rfid")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "rfid" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <Calendar className="w-5 h-5" />
               RFID
             </button>
-            <button onClick={() => setActiveModule("weighbridge")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "weighbridge" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("weighbridge")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "weighbridge" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <Zap className="w-5 h-5" />
               Weighbridge
             </button>
-            <button onClick={() => setActiveModule("alarms")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "alarms" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("alarms")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "alarms" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <AlertCircle className="w-5 h-5" />
               Alarms
             </button>
-            <button onClick={() => setActiveModule("reports")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "reports" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("reports")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "reports" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <BarChart3 className="w-5 h-5" />
               Reports
             </button>
-            <button onClick={() => setActiveModule("admin")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "admin" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
+            <button onClick={() => setActiveModule("admin")} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left transition-all duration-200 ${activeModule === "admin" ? "bg-gradient-to-r from-zinc-700 to-zinc-600 text-zinc-100 shadow-lg" : "text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100"}`}>
               <Shield className="w-5 h-5" />
               Admin
             </button>
@@ -217,21 +217,21 @@ const Index = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800">
+        <div className="flex-1 p-6 bg-gradient-to-br from-zinc-950/50 via-zinc-900/30 to-zinc-950/50">
           <div className="mb-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold text-zinc-100 mb-2 bg-gradient-to-r from-zinc-100 to-cyan-200 bg-clip-text text-transparent">
                   {getPageTitle()}
                 </h2>
                 
               </div>
               {activeModule === "dashboard" && <div className="flex items-center gap-4">
-                  <div className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg">
+                  <div className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg backdrop-blur-sm">
                     <span className="text-green-400 text-sm font-medium">System Operational</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-white text-sm font-medium">
+                    <div className="text-zinc-100 text-sm font-medium">
                       {new Date().toLocaleDateString('en-US', {
                     weekday: 'long',
                     year: 'numeric',
@@ -239,7 +239,7 @@ const Index = () => {
                     day: 'numeric'
                   })}
                     </div>
-                    <div className="text-slate-400 text-xs">
+                    <div className="text-zinc-400 text-xs">
                       {new Date().toLocaleTimeString('en-US', {
                     hour: '2-digit',
                     minute: '2-digit',
