@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,22 +10,9 @@ import MaterialManagement from "@/components/MaterialManagement";
 import ProductionManagement from "@/components/ProductionManagement";
 import AlarmsManagement from "@/components/AlarmsManagement";
 import OrdersManagement from "@/components/OrdersManagement";
-import {
-  LayoutDashboard,
-  FlaskConical,
-  Factory,
-  Users,
-  ClipboardList,
-  Calendar,
-  Zap,
-  AlertCircle,
-  BarChart3,
-  Shield,
-} from 'lucide-react';
-
+import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield } from 'lucide-react';
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
-
   const renderMainContent = () => {
     switch (activeModule) {
       case "dashboard":
@@ -46,8 +32,7 @@ const Index = () => {
       case "alarms":
         return <AlarmsManagement />;
       case "reports":
-        return (
-          <Card className="bg-slate-800 border-slate-700">
+        return <Card className="bg-slate-800 border-slate-700">
             <CardHeader>
               <CardTitle className="text-white">Reports & Analytics</CardTitle>
               <CardDescription className="text-slate-400">
@@ -57,11 +42,9 @@ const Index = () => {
             <CardContent>
               <div className="text-white">Reports module coming soon...</div>
             </CardContent>
-          </Card>
-        );
+          </Card>;
       case "maintenance":
-        return (
-          <Card className="bg-slate-800 border-slate-700">
+        return <Card className="bg-slate-800 border-slate-700">
             <CardHeader>
               <CardTitle className="text-white">Maintenance Management</CardTitle>
               <CardDescription className="text-slate-400">
@@ -71,11 +54,9 @@ const Index = () => {
             <CardContent>
               <div className="text-white">Maintenance module coming soon...</div>
             </CardContent>
-          </Card>
-        );
+          </Card>;
       case "admin":
-        return (
-          <Card className="bg-slate-800 border-slate-700">
+        return <Card className="bg-slate-800 border-slate-700">
             <CardHeader>
               <CardTitle className="text-white">Administration</CardTitle>
               <CardDescription className="text-slate-400">
@@ -85,13 +66,11 @@ const Index = () => {
             <CardContent>
               <div className="text-white">Admin module coming soon...</div>
             </CardContent>
-          </Card>
-        );
+          </Card>;
       default:
         return <DashboardStats />;
     }
   };
-
   const getPageTitle = () => {
     switch (activeModule) {
       case "dashboard":
@@ -120,7 +99,6 @@ const Index = () => {
         return "Warehouse Management Dashboard";
     }
   };
-
   const getPageDescription = () => {
     switch (activeModule) {
       case "dashboard":
@@ -149,18 +127,12 @@ const Index = () => {
         return "RFID-based inventory tracking and order management system";
     }
   };
-
-  return (
-    <div className="min-h-screen bg-slate-900 text-white">
+  return <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img 
-              src="/lovable-uploads/006e37e4-6419-43a6-9e93-f6ebf54da784.png" 
-              alt="HERCULES Logo" 
-              className="h-8"
-            />
+            <img src="/lovable-uploads/006e37e4-6419-43a6-9e93-f6ebf54da784.png" alt="HERCULES Logo" className="h-20 object-fill" />
             <div>
               <p className="text-xs text-slate-400">Industrial Management System</p>
             </div>
@@ -179,93 +151,43 @@ const Index = () => {
         {/* Sidebar */}
         <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
           <nav className="p-4 space-y-2">
-            <button 
-              onClick={() => setActiveModule("dashboard")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "dashboard" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("dashboard")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "dashboard" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <LayoutDashboard className="w-5 h-5" />
               Dashboard
             </button>
-            <button 
-              onClick={() => setActiveModule("material")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "material" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("material")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "material" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <FlaskConical className="w-5 h-5" />
               Material
             </button>
-            <button 
-              onClick={() => setActiveModule("production")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "production" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("production")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "production" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Factory className="w-5 h-5" />
               Production
             </button>
-            <button 
-              onClick={() => setActiveModule("maintenance")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "maintenance" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("maintenance")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "maintenance" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Users className="w-5 h-5" />
               Maintenance
             </button>
-            <button 
-              onClick={() => setActiveModule("orders")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "orders" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("orders")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "orders" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <ClipboardList className="w-5 h-5" />
               Orders
             </button>
-            <button 
-              onClick={() => setActiveModule("rfid")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "rfid" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("rfid")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "rfid" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Calendar className="w-5 h-5" />
               RFID
             </button>
-            <button 
-              onClick={() => setActiveModule("weighbridge")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "weighbridge" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("weighbridge")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "weighbridge" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Zap className="w-5 h-5" />
               Weighbridge
             </button>
-            <button 
-              onClick={() => setActiveModule("alarms")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "alarms" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("alarms")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "alarms" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <AlertCircle className="w-5 h-5" />
               Alarms
             </button>
-            <button 
-              onClick={() => setActiveModule("reports")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "reports" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("reports")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "reports" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <BarChart3 className="w-5 h-5" />
               Reports
             </button>
-            <button 
-              onClick={() => setActiveModule("admin")}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${
-                activeModule === "admin" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"
-              }`}
-            >
+            <button onClick={() => setActiveModule("admin")} className={`flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left ${activeModule === "admin" ? "bg-slate-700 text-white" : "text-slate-300 hover:bg-slate-700"}`}>
               <Shield className="w-5 h-5" />
               Admin
             </button>
@@ -282,8 +204,6 @@ const Index = () => {
           {renderMainContent()}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
