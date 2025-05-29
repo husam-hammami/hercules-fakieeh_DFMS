@@ -12,10 +12,8 @@ import AlarmsManagement from "@/components/AlarmsManagement";
 import OrdersManagement from "@/components/OrdersManagement";
 import StorageManagement from "@/components/StorageManagement";
 import { LayoutDashboard, FlaskConical, Factory, Users, ClipboardList, Calendar, Zap, AlertCircle, BarChart3, Shield, Database } from 'lucide-react';
-
 const Index = () => {
   const [activeModule, setActiveModule] = useState("dashboard");
-
   const renderMainContent = () => {
     switch (activeModule) {
       case "dashboard":
@@ -76,7 +74,6 @@ const Index = () => {
         return <DashboardStats />;
     }
   };
-
   const getPageTitle = () => {
     switch (activeModule) {
       case "dashboard":
@@ -107,7 +104,6 @@ const Index = () => {
         return "Production Intelligence Dashboard";
     }
   };
-
   const getPageDescription = () => {
     switch (activeModule) {
       case "dashboard":
@@ -138,7 +134,6 @@ const Index = () => {
         return "Real-time production monitoring, KPI tracking, and operational intelligence";
     }
   };
-
   return <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
       <div className="bg-slate-800 border-b border-slate-700 px-6 py-4">
@@ -147,7 +142,7 @@ const Index = () => {
             <img alt="HERCULES Logo" className="h-20 object-fill bg-slate-800 p-2 rounded" src="/lovable-uploads/d7ddbd77-9d6b-4b6f-950a-d100156778db.png" />
             <div className="relative">
               <div className="bg-gradient-to-br from-slate-700/60 via-slate-600/40 to-slate-800/60 backdrop-blur-md border border-slate-600/30 shadow-2xl px-4 py-3 rounded-xl">
-                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-tight text-xl font-light mx-1 py-1 text-center">
+                <p className="bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent tracking-wide leading-tight text-center text-base mx-0 py-0 font-thin">
                   Digital Factory Management System
                 </p>
                 <div className="mt-2 h-px bg-gradient-to-r from-transparent via-cyan-500/80 to-transparent shadow-lg"></div>
@@ -231,30 +226,28 @@ const Index = () => {
                 </h2>
                 <p className="text-slate-400">{getPageDescription()}</p>
               </div>
-              {activeModule === "dashboard" && (
-                <div className="flex items-center gap-4">
+              {activeModule === "dashboard" && <div className="flex items-center gap-4">
                   <div className="px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-lg">
                     <span className="text-green-400 text-sm font-medium">System Operational</span>
                   </div>
                   <div className="text-right">
                     <div className="text-white text-sm font-medium">
-                      {new Date().toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
+                      {new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                     </div>
                     <div className="text-slate-400 text-xs">
-                      {new Date().toLocaleTimeString('en-US', { 
-                        hour: '2-digit', 
-                        minute: '2-digit', 
-                        second: '2-digit' 
-                      })}
+                      {new Date().toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                  })}
                     </div>
                   </div>
-                </div>
-              )}
+                </div>}
             </div>
           </div>
 
@@ -263,5 +256,4 @@ const Index = () => {
       </div>
     </div>;
 };
-
 export default Index;
