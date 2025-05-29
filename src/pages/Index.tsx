@@ -7,6 +7,10 @@ import RFIDTracking from "@/components/RFIDTracking";
 import InventoryView from "@/components/InventoryView";
 import TruckLogging from "@/components/TruckLogging";
 import DashboardStats from "@/components/DashboardStats";
+import MaterialManagement from "@/components/MaterialManagement";
+import ProductionManagement from "@/components/ProductionManagement";
+import AlarmsManagement from "@/components/AlarmsManagement";
+import OrdersManagement from "@/components/OrdersManagement";
 import {
   LayoutDashboard,
   FlaskConical,
@@ -47,54 +51,50 @@ const Index = () => {
 
       <div className="flex">
         {/* Sidebar */}
-<div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
-  <nav className="p-4 space-y-2">
-    {/* <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div> */}
-
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
-      <LayoutDashboard className="w-5 h-5" />
-      Dashboard
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <FlaskConical className="w-5 h-5" />
-      Material
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <Factory className="w-5 h-5" />
-      Production
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <Users className="w-5 h-5" />
-      Maintenance
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <ClipboardList className="w-5 h-5" />
-      Orders
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
-      <Calendar className="w-5 h-5" />
-      RFID
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <Zap className="w-5 h-5" />
-      Weighbridge
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <AlertCircle className="w-5 h-5" />
-      Alarms
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <BarChart3 className="w-5 h-5" />
-      Reports
-    </a>
-    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
-      <Shield className="w-5 h-5" />
-      Admin
-    </a>
-  </nav>
-</div>
-
-
+        <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
+          <nav className="p-4 space-y-2">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
+              <LayoutDashboard className="w-5 h-5" />
+              Dashboard
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <FlaskConical className="w-5 h-5" />
+              Material
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <Factory className="w-5 h-5" />
+              Production
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <Users className="w-5 h-5" />
+              Maintenance
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <ClipboardList className="w-5 h-5" />
+              Orders
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
+              <Calendar className="w-5 h-5" />
+              RFID
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <Zap className="w-5 h-5" />
+              Weighbridge
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <AlertCircle className="w-5 h-5" />
+              Alarms
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <BarChart3 className="w-5 h-5" />
+              Reports
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700">
+              <Shield className="w-5 h-5" />
+              Admin
+            </a>
+          </nav>
+        </div>
 
         {/* Main Content */}
         <div className="flex-1 p-6">
@@ -106,18 +106,30 @@ const Index = () => {
           <DashboardStats />
 
           <Tabs defaultValue="orders" className="mt-8">
-            <TabsList className="grid w-full grid-cols-4 bg-slate-800 border border-slate-700 p-1 rounded-lg">
+            <TabsList className="grid w-full grid-cols-7 bg-slate-800 border border-slate-700 p-1 rounded-lg">
               <TabsTrigger 
                 value="orders" 
                 className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
               >
-                Order Management
+                Orders
+              </TabsTrigger>
+              <TabsTrigger 
+                value="material"
+                className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
+              >
+                Material
+              </TabsTrigger>
+              <TabsTrigger 
+                value="production"
+                className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
+              >
+                Production
               </TabsTrigger>
               <TabsTrigger 
                 value="rfid"
                 className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
               >
-                RFID Tracking
+                RFID
               </TabsTrigger>
               <TabsTrigger 
                 value="inventory"
@@ -129,12 +141,26 @@ const Index = () => {
                 value="trucks"
                 className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
               >
-                Truck Logging
+                Trucks
+              </TabsTrigger>
+              <TabsTrigger 
+                value="alarms"
+                className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-slate-300 rounded-md"
+              >
+                Alarms
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="orders" className="mt-6">
-              <OrderManagement />
+              <OrdersManagement />
+            </TabsContent>
+
+            <TabsContent value="material" className="mt-6">
+              <MaterialManagement />
+            </TabsContent>
+
+            <TabsContent value="production" className="mt-6">
+              <ProductionManagement />
             </TabsContent>
 
             <TabsContent value="rfid" className="mt-6">
@@ -147,6 +173,10 @@ const Index = () => {
 
             <TabsContent value="trucks" className="mt-6">
               <TruckLogging />
+            </TabsContent>
+
+            <TabsContent value="alarms" className="mt-6">
+              <AlarmsManagement />
             </TabsContent>
           </Tabs>
         </div>
