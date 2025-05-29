@@ -49,7 +49,7 @@ const Index = () => {
         {/* Sidebar */}
 <div className="w-64 bg-slate-800 min-h-screen border-r border-slate-700">
   <nav className="p-4 space-y-2">
-    <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div>
+    {/* <div className="text-xs text-slate-400 uppercase tracking-wider mb-3">Navigation</div> */}
 
     <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-700 text-white">
       <LayoutDashboard className="w-5 h-5" />
