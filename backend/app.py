@@ -12,6 +12,9 @@ inventory = []
 rfid_tags = []
 trucks = []
 alarms = []
+storage_bins = []
+bulk_transfers = []
+recipes = []
 
 # Simple ID counters
 counters = {
@@ -20,7 +23,10 @@ counters = {
     'inventory': 0,
     'rfid': 0,
     'truck': 0,
-    'alarm': 0
+    'alarm': 0,
+    'storage_bin': 0,
+    'bulk_transfer': 0,
+    'recipe': 0
 }
 
 def next_id(prefix: str) -> str:
@@ -162,6 +168,61 @@ def update_alarm_status(alarm_id):
             alarm['operator'] = data.get('operator', alarm.get('operator'))
             return jsonify(alarm)
     return jsonify({'error': 'not found'}), 404
+
+@app.get('/api/storage-bins')
+def get_storage_bins():
+    return jsonify(storage_bins)
+
+@app.post('/api/storage-bins')
+def create_storage_bin():
+    data = request.get_json(force=True)
+    bin = {
+        'id': next_id('storage_bin'),
+        'name': data.get('name', ''),
+        'capacity': data.get('capacity', 0),
+        'currentLevel': data.get('currentLevel', 0),
+        'location': data.get('location', ''),
+        'status': data.get('status', 'available')
+    }
+    storage_bins.append(bin)
+    return jsonify(bin), 201
+
+@app.get('/api/bulk-transfers')
+def get_bulk_transfers():
+    return jsonify(bulk_transfers)
+
+@app.post('/api/bulk-transfers')
+def create_bulk_transfer():
+    data = request.get_json(force=True)
+    transfer = {
+        'id': next_id('bulk_transfer'),
+        'sourceBin': data.get('sourceBin', ''),
+        'destinationBin': data.get('destinationBin', ''),
+        'materialId': data.get('materialId', ''),
+        'quantity': data.get('quantity', 0),
+        'status': data.get('status', 'pending'),
+        'timestamp': datetime.utcnow().isoformat()
+    }
+    bulk_transfers.append(transfer)
+    return jsonify(transfer), 201
+
+@app.get('/api/recipes')
+def get_recipes():
+    return jsonify(recipes)
+
+@app.post('/api/recipes')
+def create_recipe():
+    data = request.get_json(force=True)
+    recipe = {
+        'id': next_id('recipe'),
+        'name': data.get('name', ''),
+        'description': data.get('description', ''),
+        'ingredients': data.get('ingredients', []),
+        'instructions': data.get('instructions', ''),
+        'status': data.get('status', 'draft')
+    }
+    recipes.append(recipe)
+    return jsonify(recipe), 201
 
 @app.route('/')
 def index():
